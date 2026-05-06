@@ -255,10 +255,11 @@ def create_llm(
     if thinking_on and provider.type == "kimi":
         from kosong.chat_provider.kimi import Kimi
 
-        if isinstance(chat_provider, Kimi) and (
-            thinking_keep := os.getenv("KIMI_MODEL_THINKING_KEEP")
-        ):
-            chat_provider = chat_provider.with_extra_body({"thinking": {"keep": thinking_keep}})
+        if isinstance(chat_provider, Kimi):
+            if thinking_keep := os.getenv("KIMI_MODEL_THINKING_KEEP"):
+                chat_provider = chat_provider.with_extra_body({"thinking": {"keep": thinking_keep}})
+            if reasoning_effort := os.getenv("KIMI_MODEL_REASONING_EFFORT"):
+                chat_provider = chat_provider.with_generation_kwargs(reasoning_effort=reasoning_effort)
 
     return LLM(
         chat_provider=chat_provider,
