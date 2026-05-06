@@ -70,6 +70,8 @@ class LLMModel(BaseModel):
     """Model capabilities"""
     display_name: str | None = None
     """Human-readable model name (sourced from the provider's models API when available)"""
+    reasoning_effort: str | None = None
+    """Thinking reasoning effort level (low, medium, high, xhigh, max)."""
 
 
 class LoopControl(BaseModel):
