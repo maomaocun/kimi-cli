@@ -65,7 +65,7 @@ class BuiltinSystemPromptArgs:
     """The shell executable used by the Shell tool, e.g. 'bash (`/bin/bash`)'."""
 
 
-_AGENTS_MD_MAX_BYTES = 32 * 1024  # 32 KiB
+_AGENTS_MD_MAX_BYTES = 1 * 1024 * 1024  # 1 MiB
 
 
 async def _dirs_root_to_leaf(work_dir: KaosPath, project_root: KaosPath) -> list[KaosPath]:
